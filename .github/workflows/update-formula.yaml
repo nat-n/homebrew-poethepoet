@@ -1,0 +1,44 @@
+name: Update formula
+
+on: workflow_dispatch
+
+jobs:
+
+  code-quality:
+    name: Update formula
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install poe via pipx
+        run: pipx install poethepoet
+
+      - name: Lookup version of current poethepoet
+        run: echo "POE_VERSION=$(poe -q --version)" >> $GITHUB_ENV
+
+      - name: Run build process
+        run: poe build
+
+      - name: Update README
+        run: |
+          python <<EOF
+          import re;
+          with open("./README.md") as rm:
+            result = re.sub(r"version: \d+\.\d+\.\d+\n", "version: ${POE_VERSION}\n", rm.read())
+          with open("./README.md", "w") as rm:
+            rm.write(result)
+          EOF
+
+      - name: Commit updates
+        run: |
+          git config user.name 🤖
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit -m "Update formula for poethepoet v${POE_VERSION}"
+          git push

@@ -1,0 +1,30 @@
+
+[tool.poe.executor]
+type     = "virtualenv"
+location = "venv"
+
+[tool.poe.tasks.clean]
+script = "shutil:rmtree('venv', ignore_errors=True)"
+executor.type = "simple"
+
+[tool.poe.tasks.init-venv]
+shell    = "python -m venv venv"
+executor.type = "simple"
+
+[tool.poe.tasks.install-deps]
+cmd = "pip install --disable-pip-version-check homebrew-pypi-poet poethepoet"
+
+[tool.poe.tasks.mk-formula-dir]
+script = "os:makedirs('Formula', exist_ok=True)"
+
+[tool.poe.tasks.update-formula]
+shell = "poet -f poethepoet > 'Formula/poethepoet.rb'"
+
+[tool.poe.tasks.build]
+sequence = [
+  "clean",
+  "init-venv",
+  "install-deps",
+  "mk-formula-dir",
+  "update-formula"
+]
