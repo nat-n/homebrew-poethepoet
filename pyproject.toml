@@ -4,23 +4,30 @@ type     = "virtualenv"
 location = "venv"
 
 [tool.poe.tasks.clean]
-script = "shutil:rmtree('venv', ignore_errors=True)"
+help          = "0. Make sure the workspace venv doesn't already exist"
+script        = "shutil:rmtree('venv', ignore_errors=True)"
 executor.type = "simple"
 
 [tool.poe.tasks.init-venv]
-shell    = "python -m venv venv"
+help          = "1. Create the workspace venv"
+cmd           = "python -m venv venv"
 executor.type = "simple"
 
 [tool.poe.tasks.install-deps]
-cmd = "pip install --disable-pip-version-check homebrew-pypi-poet poethepoet"
+help = "2. Install poet and poethepoet into the workspace venv"
+cmd  = "pip install --disable-pip-version-check homebrew-pypi-poet poethepoet"
 
 [tool.poe.tasks.mk-formula-dir]
+help   = "3. Ensure the Formula directory exists"
 script = "os:makedirs('Formula', exist_ok=True)"
 
 [tool.poe.tasks.update-formula]
-shell = "poet -f poethepoet > 'Formula/poethepoet.rb'"
+help           = "4. Run poet to generate an up to date formula"
+cmd            = "poet -f poethepoet"
+capture_stdout = "Formula/poethepoet.rb"
 
 [tool.poe.tasks.build]
+help     = "Run the full build process to update the brew Formula"
 sequence = [
   "clean",
   "init-venv",
