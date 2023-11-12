@@ -3,8 +3,8 @@ class Poethepoet < Formula
 
   desc "Shiny new formula"
   homepage "https://github.com/nat-n/poethepoet"
-  url "https://files.pythonhosted.org/packages/44/d9/a2cb91218dc7dbacce14c010a1d955705eac3d59905befd7b2e56db7b6cf/poethepoet-0.24.2.tar.gz"
-  sha256 "f600ecdbf58b474f7dba273060b194242566ffccb41d75f5b0d1cb8f5aa8bf2e"
+  url "https://files.pythonhosted.org/packages/22/bc/9d5c611f51c71757e43fcb031cf5828962cf30895ac6f36fb5a10f63819b/poethepoet-0.24.3.tar.gz"
+  sha256 "73f1060200d1c8f21e303d06a879c5c0e17b96ab16740da70aee2dcc3e4350e4"
 
   depends_on "python3"
 
