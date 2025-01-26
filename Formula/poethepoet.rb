@@ -2,9 +2,9 @@ class Poethepoet < Formula
   include Language::Python::Virtualenv
 
   desc "Shiny new formula"
-  homepage "https://github.com/nat-n/poethepoet"
-  url "https://files.pythonhosted.org/packages/d1/10/11f929bad564b2dbc5c119ecf0f37456ac24538bb4a70c76f140a2aa695a/poethepoet-0.32.1.tar.gz"
-  sha256 "471e1a025812dcd3d2997e30989681be5ab0a49232ee5fba94859629671c9584"
+  homepage "None"
+  url "https://files.pythonhosted.org/packages/ee/c6/4bc7e21166726fc96f82f58b31fd032fdf8864d3aa17e2622578cb96c24d/poethepoet-0.32.2.tar.gz"
+  sha256 "1d68871dac1b191e27bd68fea57d0e01e9afbba3fcd01dbe6f6bc3fcb071fe4c"
 
   depends_on "python3"
 
