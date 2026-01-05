@@ -8,4 +8,4 @@ To install [Poe the Poet](https://github.com/nat-n/poethepoet) using Homebrew:
 You can confirm that the install worked using:
 
     $ poe --version
-    Poe the Poet - version: 0.38.0
+    Poe the Poet - version: 0.39.0
